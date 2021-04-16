@@ -21,7 +21,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface AudioRecording {
       itemType: 'AudioRecording'
@@ -50,7 +50,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Bill {
       itemType: 'Bill'
@@ -75,7 +75,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface BlogPost {
       itemType: 'BlogPost'
@@ -94,7 +94,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Book {
       itemType: 'Book'
@@ -124,7 +124,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface BookSection {
       itemType: 'BookSection'
@@ -155,7 +155,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Case {
       itemType: 'Case'
@@ -178,7 +178,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface ComputerProgram {
       itemType: 'ComputerProgram'
@@ -205,7 +205,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface ConferencePaper {
       itemType: 'ConferencePaper'
@@ -235,7 +235,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface DictionaryEntry {
       itemType: 'DictionaryEntry'
@@ -266,7 +266,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Document {
       itemType: 'Document'
@@ -288,7 +288,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Email {
       itemType: 'Email'
@@ -305,7 +305,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface EncyclopediaArticle {
       itemType: 'EncyclopediaArticle'
@@ -336,7 +336,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Film {
       itemType: 'Film'
@@ -361,7 +361,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface ForumPost {
       itemType: 'ForumPost'
@@ -380,7 +380,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Hearing {
       itemType: 'Hearing'
@@ -406,7 +406,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface InstantMessage {
       itemType: 'InstantMessage'
@@ -423,7 +423,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Interview {
       itemType: 'Interview'
@@ -445,7 +445,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface JournalArticle {
       itemType: 'JournalArticle'
@@ -476,7 +476,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Letter {
       itemType: 'Letter'
@@ -498,7 +498,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface MagazineArticle {
       itemType: 'MagazineArticle'
@@ -524,7 +524,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Manuscript {
       itemType: 'Manuscript'
@@ -548,7 +548,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Map {
       itemType: 'Map'
@@ -576,7 +576,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface NewspaperArticle {
       itemType: 'NewspaperArticle'
@@ -603,14 +603,14 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Note {
       itemType: 'Note'
       key: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Patent {
       itemType: 'Patent'
@@ -638,7 +638,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Podcast {
       itemType: 'Podcast'
@@ -658,7 +658,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Presentation {
       itemType: 'Presentation'
@@ -678,7 +678,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface RadioBroadcast {
       itemType: 'RadioBroadcast'
@@ -705,7 +705,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Report {
       itemType: 'Report'
@@ -732,7 +732,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Statute {
       itemType: 'Statute'
@@ -756,7 +756,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface TvBroadcast {
       itemType: 'TvBroadcast'
@@ -783,7 +783,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Thesis {
       itemType: 'Thesis'
@@ -808,7 +808,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface VideoRecording {
       itemType: 'VideoRecording'
@@ -837,7 +837,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     interface Webpage {
       itemType: 'Webpage'
@@ -856,7 +856,7 @@ declare namespace Zotero {
       extra: string
       tags: string[]
       collections: string[]
-      relations: Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
     type Any = Artwork | AudioRecording | Bill | BlogPost | Book | BookSection | Case | ComputerProgram | ConferencePaper | DictionaryEntry | Document | Email | EncyclopediaArticle | Film | ForumPost | Hearing | InstantMessage | Interview | JournalArticle | Letter | MagazineArticle | Manuscript | Map | NewspaperArticle | Note | Patent | Podcast | Presentation | RadioBroadcast | Report | Statute | TvBroadcast | Thesis | VideoRecording | Webpage
   }
