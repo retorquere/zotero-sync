@@ -13,7 +13,7 @@
   "author": "Emiliano Heyns",
   "license": "AGPL",
   "devDependencies": {
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "ejs": "^3.1.6",
     "eslint": "^7.24.0",
     "ts-node": "^9.1.1",

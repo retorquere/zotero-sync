@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@types/node': ^14.14.37
+  '@types/node': ^14.14.41
   ejs: ^3.1.6
   eslint: ^7.24.0
   json-stringify-pretty-compact: ^3.0.0
@@ -14,7 +14,7 @@ dependencies:
   node-fetch: 2.6.1
 
 devDependencies:
-  '@types/node': 14.14.37
+  '@types/node': 14.14.41
   ejs: 3.1.6
   eslint: 7.24.0
   ts-node: 9.1.1_typescript@4.2.4
@@ -57,8 +57,8 @@ packages:
       - supports-color
     dev: true
 
-  /@types/node/14.14.37:
-    resolution: {integrity: sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==}
+  /@types/node/14.14.41:
+    resolution: {integrity: sha512-dueRKfaJL4RTtSa7bWeTK1M+VH+Gns73oCgzvYfHZywRCoPSd8EkXBL0mZ9unPTveBn+D9phZBaxuzpwjWkW0g==}
     dev: true
 
   /acorn-jsx/5.3.1_acorn@7.4.1:
