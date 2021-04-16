@@ -1,6 +1,5 @@
-import { Zotero } from './index'
+import { Sync } from './index'
 import { Store } from './json-store'
-
 
 function main(asyncMain) {
   asyncMain()
@@ -14,9 +13,9 @@ function main(asyncMain) {
 }
 
 main(async () => {
-  const zotero = new Zotero
+  const zotero = new Sync
 
-  for (const event of [ Zotero.event.library, Zotero.event.collection, Zotero.event.item, Zotero.event.error ]) {
+  for (const event of [ Sync.event.library, Sync.event.collection, Sync.event.item, Sync.event.error ]) {
     zotero.on(event, (e => function() { console.log(e, [...arguments]) })(event))
   }
   await zotero.login(process.env.ZOTERO_API_KEY)

@@ -13,7 +13,7 @@ type RemoteLibrary = {
   version?: number
 }
 
-export class Zotero {
+export class Sync {
   static event = {
     library: 'zotero-sync.save-library',
     collection: 'zotero-sync.save-collection',
@@ -27,7 +27,6 @@ export class Zotero {
   public userID: number
   public libraries: Record<string, RemoteLibrary>
   public emitter: events.EventEmitter
-
 
   constructor(batch = 50, emitter?: events.EventEmitter) {
     this.batch = 50
@@ -99,12 +98,12 @@ export class Zotero {
 
     // update all libraries
     for (const [n, prefix] of enumerate(libraries)) {
-      this.emitter.emit(Zotero.event.library, this.libraries[prefix].name, n + 1, libraries.length)
+      this.emitter.emit(Sync.event.library, this.libraries[prefix].name, n + 1, libraries.length)
 
       try {
         await this.update(store, prefix)
       } catch(err) {
-        this.emitter.emit(Zotero.event.error, err)
+        this.emitter.emit(Sync.event.error, err)
       }
     }
   }
@@ -127,7 +126,7 @@ export class Zotero {
       for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, this.batch).join(',')}&includeTrashed=1`)) {
         await stored.add(item.data)
         n += 1
-        this.emitter.emit(Zotero.event.item, n, items.length)
+        this.emitter.emit(Sync.event.item, n, items.length)
       }
     }
 
@@ -136,7 +135,7 @@ export class Zotero {
       for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, this.batch).join(',')}`)) {
         await stored.add_collection(collection.data)
         n += 1
-        this.emitter.emit(Zotero.event.collection, collection.data.name, n, collections.length)
+        this.emitter.emit(Sync.event.collection, collection.data.name, n, collections.length)
       }
     }
 

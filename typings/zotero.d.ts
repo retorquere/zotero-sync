@@ -1,4 +1,4 @@
-declare namespace Zotero {
+export declare namespace Zotero {
   namespace Item {
     interface Artwork {
       itemType: 'Artwork'

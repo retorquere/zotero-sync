@@ -2,6 +2,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 const stringify = require('json-stringify-pretty-compact')
 
+import type { Zotero } from './typings/zotero'
+
 export class Library implements Zotero.Library {
   private path: string
   private collections: Zotero.Collection[]
