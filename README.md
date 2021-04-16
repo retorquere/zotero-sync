@@ -4,7 +4,7 @@
 
 
 ```
-import { Zotero } from '@retorquere/zotero-sync'
+import { Sync } from '@retorquere/zotero-sync'
 import { Store } from '@retorquere/zotero-sync/json-store' // or implement your own
 
 const zotero = new Zotero
@@ -19,4 +19,24 @@ zotero.login(process.env.ZOTERO_API_KEY)
     console.log(err)
     process.exit(1)
   })
+```
+
+make your own store by implementing
+
+```
+interface Library {
+  version: number
+  name: string
+  save: (name: string, version: number) => Promise<void>
+  remove_collections: (keys: string[]) => Promise<void>
+  add_collection: (collection: Collection) => Promise<void>
+  add: (item: Item.Any) => Promise<void>
+  remove: (keys: string[]) => Promise<void>
+}
+
+interface Store {
+  libraries: string[] // user_or_group_prefix
+  remove: (user_or_group_prefix: string) => Promise<void>
+  get: (user_or_group_prefix: string) => Promise<Library>
+}
 ```
