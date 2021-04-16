@@ -1,0 +1,53 @@
+declare namespace Zotero {
+  namespace Item {
+<% for (const [itemType, fields] of Object.entries(itemTypes)) { -%>
+    interface <%- itemType %> {
+      itemType: '<%- itemType %>'
+      key: string
+<% for (const [field, type] of Object.entries(fields)) { -%>
+      <%- field %>: <%- type %>
+<% } -%>
+    }
+<% } -%>
+    type Any = <%- Object.keys(itemTypes).join(' | ') %>
+  }
+
+  interface Collection {
+    key: string;
+    version: number;
+    library: {
+      type: string;
+      id: number;
+      name: string;
+      links: Record<'self' | 'alternate' | 'up', { href: string, type: string }>
+    }
+    links: Record<'self' | 'alternate' | 'up', { href: string, type: string }>
+    meta: {
+      numCollections: number;
+      numItems: number;
+    }
+    data: {
+      key: string;
+      version: number;
+      name: string;
+      parentCollection: boolean | string;
+      relations: Record<string, string>
+    }
+  }
+
+  interface Library {
+    version: number
+    name: string
+    save: (name: string, version: number) => Promise<void>
+    remove_collections: (keys: string[]) => Promise<void>
+    add_collection: (collection: Collection) => Promise<void>
+    add: (item: Item.Any) => Promise<void>
+    remove: (keys: string[]) => Promise<void>
+  }
+
+  interface Store {
+    libraries: string[] // user_or_group_prefix
+    remove: (user_or_group_prefix: string) => Promise<void>
+    get: (user_or_group_prefix: string) => Promise<Library>
+  }
+}

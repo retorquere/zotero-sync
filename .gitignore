@@ -1,0 +1,6 @@
+.env
+*.js
+*.sh
+data
+.DS_Store
+node_modules
