@@ -6,6 +6,7 @@
 ```
 import { Sync } from '@retorquere/zotero-sync'
 import { Store } from '@retorquere/zotero-sync/json-store' // or implement your own
+import type { Zotero } from './typings/zotero'
 
 const zotero = new Zotero
 for (const event of [ Zotero.event.library, Zotero.event.collection, Zotero.event.item, Zotero.event.error ]) {
