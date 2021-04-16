@@ -25,7 +25,7 @@ async function get_type(itemType) {
       type = 'string[]'
     }
     else if (k === 'relations') {
-      type = 'Record<string, string>'
+      type = "Record<relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>, string>"
     } else {
       throw new Error(k)
     }

@@ -31,7 +31,7 @@ declare namespace Zotero {
       version: number;
       name: string;
       parentCollection: boolean | string;
-      relations: Record<string, string>
+      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
   }
 
