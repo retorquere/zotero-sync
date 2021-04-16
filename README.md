@@ -5,21 +5,39 @@
 
 ```
 import { Sync } from '@retorquere/zotero-sync'
-import { Store } from '@retorquere/zotero-sync/json-store' // or implement your own
-import type { Zotero } from './typings/zotero'
+import { Store } from '@retorquere/zotero-sync/json-store'
 
-const zotero = new Zotero
-for (const event of [ Zotero.event.library, Zotero.event.collection, Zotero.event.item, Zotero.event.error ]) {
-  zotero.on(event, (e => function() { console.log(e, [...arguments]) })(event))
-}
+(async () => {
+  const zotero = new Sync
 
-zotero.login(process.env.ZOTERO_API_KEY)
-  .then(() => (new Store).load('data'))
-  .then(store => zotero.sync(store))
-  .catch(err => {
-    console.log(err)
-    process.exit(1)
-  })
+  for (const event of [ Sync.event.library, Sync.event.collection, Sync.event.item, Sync.event.error ]) {
+    zotero.on(event, (e => function() { console.log(e, [...arguments]) })(event))
+  }
+  await zotero.login(process.env.ZOTERO_API_KEY)
+  await zotero.sync(await (new Store).load('data'))
+})().catch(err => {
+  console.log(err)
+  process.exit(1)
+})
+```
+
+or
+
+```
+const Sync = require('@retorquere/zotero-sync').Sync
+const Store = require('@retorquere/zotero-sync/json-store').Store
+
+(async () => {
+  const zotero = new Sync;
+  for (const event of [Sync.event.library, Sync.event.collection, Sync.event.item, Sync.event.error]) {
+    zotero.on(event, (e => function () { console.log(e, [...arguments]); })(event));
+  }
+  await zotero.login(process.env.ZOTERO_API_KEY);
+  await zotero.sync(await (new Store).load('data'));
+})().catch(err => {
+    console.log(err);
+    process.exit(1);
+});
 ```
 
 make your own store by implementing
