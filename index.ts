@@ -1,6 +1,8 @@
 import fetch from 'node-fetch'
 import * as events from 'events'
 
+import type { Zotero } from './typings/zotero'
+
 function enumerate(array) {
   return array.map((v, i) => [i, v])
 }

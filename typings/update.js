@@ -40,8 +40,8 @@ async function main() {
     itemType = itemType.itemType[0].toUpperCase() + itemType.itemType.substr(1)
     itemTypes[itemType] = await get_type(itemType)
   }
-  const typing = ejs.render(await fs.promises.readFile(path.join(__dirname, 'global.ejs'), 'utf-8'), { itemTypes })
-  await fs.promises.writeFile(path.join(__dirname, 'global.d.ts'), typing)
+  const typing = ejs.render(await fs.promises.readFile(path.join(__dirname, 'zotero.ejs'), 'utf-8'), { itemTypes })
+  await fs.promises.writeFile(path.join(__dirname, 'zotero.d.ts'), typing)
 }
 
 main()
