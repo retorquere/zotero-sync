@@ -5,7 +5,7 @@
   "scripts": {
     "tsc": "tsc",
     "prepublishOnly": "pnpm install && npm run tsc",
-    "go": "npm run tsc && npm version patch && npm publish",
+    "go": "npm run tsc && npm version patch && npm publish --access public",
     "ncu": "ncu -u && pnpm i && git add package.json pnpm-lock.yaml && git commit -m ncu",
     "postversion": "git push --follow-tags"
   },
