@@ -1,5 +1,5 @@
 {
-  "name": "zotero-sync",
+  "name": "@retorquere/zotero-sync",
   "version": "1.0.0",
   "description": "One-way sync of Zotero libraries",
   "scripts": {
