@@ -61,6 +61,6 @@ interface Library {
 interface Store {
   libraries: string[] // user_or_group_prefix
   remove: (user_or_group_prefix: string) => Promise<void>
-  get: (user_or_group_prefix: string) => Promise<Library>
+  get: (user_or_group_prefix: string) => Promise<Library> // must return a library -- create one if it doesn't exist yet
 }
 ```
