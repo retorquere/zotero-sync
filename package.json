@@ -10,7 +10,7 @@
     "postversion": "git push --follow-tags"
   },
   "main": "index.js",
-  "typings": "./typings/global.d.ts",
+  "typings": "./typings/zotero.d.ts",
   "author": "Emiliano Heyns",
   "license": "AGPL",
   "devDependencies": {
