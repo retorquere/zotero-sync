@@ -879,7 +879,7 @@ export declare namespace Zotero {
       key: string;
       version: number;
       name: string;
-      parentCollection: boolean | string;
+      parentCollection: false | string;
       relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
     }
   }
