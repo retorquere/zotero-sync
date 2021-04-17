@@ -43,7 +43,7 @@ export class Sync {
 
     this.libraries = {}
 
-    if (account.access && account.access.user && account.access.user.library) {
+    if (account.access?.user?.library) {
       const prefix = `/users/${account.userID}`
       this.libraries[prefix] = {
         prefix,
