@@ -32,6 +32,6 @@
     "package.json",
     "pnpm-lock.yaml",
     "tsconfig.json",
-    "typings/global.d.ts"
+    "typings/zotero.d.ts"
   ]
 }
