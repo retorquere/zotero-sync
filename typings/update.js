@@ -19,7 +19,7 @@ async function get_type(itemType) {
     }
     else if (k === 'creators') {
       const creatorTypes = (await getJSON(`https://api.zotero.org/itemTypeCreatorTypes?itemType=${itemType}`)).map(creatorType => `'${creatorType.creatorType}'`).join(' | ')
-      type = `{ creatorType: ${creatorTypes}, name?: string, firstName?: string, kastName?: string }[]`
+      type = `{ creatorType: ${creatorTypes}, name?: string, firstName?: string, lastName?: string }[]`
     }
     else if (k === 'tags' || k === 'collections') {
       type = 'string[]'

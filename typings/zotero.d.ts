@@ -4,7 +4,7 @@ export declare namespace Zotero {
       itemType: 'Artwork'
       key: string
       title: string
-      creators: { creatorType: 'artist' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'artist' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       artworkMedium: string
       artworkSize: string
@@ -27,7 +27,7 @@ export declare namespace Zotero {
       itemType: 'AudioRecording'
       key: string
       title: string
-      creators: { creatorType: 'performer' | 'composer' | 'contributor' | 'wordsBy', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'performer' | 'composer' | 'contributor' | 'wordsBy', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       audioRecordingFormat: string
       seriesTitle: string
@@ -56,7 +56,7 @@ export declare namespace Zotero {
       itemType: 'Bill'
       key: string
       title: string
-      creators: { creatorType: 'sponsor' | 'contributor' | 'cosponsor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'sponsor' | 'contributor' | 'cosponsor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       billNumber: string
       code: string
@@ -81,7 +81,7 @@ export declare namespace Zotero {
       itemType: 'BlogPost'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'commenter' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'commenter' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       blogTitle: string
       websiteType: string
@@ -100,7 +100,7 @@ export declare namespace Zotero {
       itemType: 'Book'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       series: string
       seriesNumber: string
@@ -130,7 +130,7 @@ export declare namespace Zotero {
       itemType: 'BookSection'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'bookAuthor' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'bookAuthor' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       bookTitle: string
       series: string
@@ -161,7 +161,7 @@ export declare namespace Zotero {
       itemType: 'Case'
       key: string
       caseName: string
-      creators: { creatorType: 'author' | 'contributor' | 'counsel', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'counsel', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       court: string
       dateDecided: string
@@ -184,7 +184,7 @@ export declare namespace Zotero {
       itemType: 'ComputerProgram'
       key: string
       title: string
-      creators: { creatorType: 'programmer' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'programmer' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       seriesTitle: string
       versionNumber: string
@@ -211,7 +211,7 @@ export declare namespace Zotero {
       itemType: 'ConferencePaper'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       date: string
       proceedingsTitle: string
@@ -241,7 +241,7 @@ export declare namespace Zotero {
       itemType: 'DictionaryEntry'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       dictionaryTitle: string
       series: string
@@ -272,7 +272,7 @@ export declare namespace Zotero {
       itemType: 'Document'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       publisher: string
       date: string
@@ -294,7 +294,7 @@ export declare namespace Zotero {
       itemType: 'Email'
       key: string
       subject: string
-      creators: { creatorType: 'author' | 'contributor' | 'recipient', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'recipient', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       date: string
       shortTitle: string
@@ -311,7 +311,7 @@ export declare namespace Zotero {
       itemType: 'EncyclopediaArticle'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       encyclopediaTitle: string
       series: string
@@ -342,7 +342,7 @@ export declare namespace Zotero {
       itemType: 'Film'
       key: string
       title: string
-      creators: { creatorType: 'director' | 'contributor' | 'producer' | 'scriptwriter', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'director' | 'contributor' | 'producer' | 'scriptwriter', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       distributor: string
       date: string
@@ -367,7 +367,7 @@ export declare namespace Zotero {
       itemType: 'ForumPost'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       forumTitle: string
       postType: string
@@ -386,7 +386,7 @@ export declare namespace Zotero {
       itemType: 'Hearing'
       key: string
       title: string
-      creators: { creatorType: 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       committee: string
       place: string
@@ -412,7 +412,7 @@ export declare namespace Zotero {
       itemType: 'InstantMessage'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'recipient', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'recipient', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       date: string
       language: string
@@ -429,7 +429,7 @@ export declare namespace Zotero {
       itemType: 'Interview'
       key: string
       title: string
-      creators: { creatorType: 'interviewee' | 'contributor' | 'interviewer' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'interviewee' | 'contributor' | 'interviewer' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       date: string
       interviewMedium: string
@@ -451,7 +451,7 @@ export declare namespace Zotero {
       itemType: 'JournalArticle'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'editor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       publicationTitle: string
       volume: string
@@ -482,7 +482,7 @@ export declare namespace Zotero {
       itemType: 'Letter'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'recipient', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'recipient', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       letterType: string
       date: string
@@ -504,7 +504,7 @@ export declare namespace Zotero {
       itemType: 'MagazineArticle'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       publicationTitle: string
       volume: string
@@ -530,7 +530,7 @@ export declare namespace Zotero {
       itemType: 'Manuscript'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       manuscriptType: string
       place: string
@@ -554,7 +554,7 @@ export declare namespace Zotero {
       itemType: 'Map'
       key: string
       title: string
-      creators: { creatorType: 'cartographer' | 'contributor' | 'seriesEditor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'cartographer' | 'contributor' | 'seriesEditor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       mapType: string
       scale: string
@@ -582,7 +582,7 @@ export declare namespace Zotero {
       itemType: 'NewspaperArticle'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'reviewedAuthor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       publicationTitle: string
       place: string
@@ -616,7 +616,7 @@ export declare namespace Zotero {
       itemType: 'Patent'
       key: string
       title: string
-      creators: { creatorType: 'inventor' | 'attorneyAgent' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'inventor' | 'attorneyAgent' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       place: string
       country: string
@@ -644,7 +644,7 @@ export declare namespace Zotero {
       itemType: 'Podcast'
       key: string
       title: string
-      creators: { creatorType: 'podcaster' | 'contributor' | 'guest', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'podcaster' | 'contributor' | 'guest', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       seriesTitle: string
       episodeNumber: string
@@ -664,7 +664,7 @@ export declare namespace Zotero {
       itemType: 'Presentation'
       key: string
       title: string
-      creators: { creatorType: 'presenter' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'presenter' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       presentationType: string
       date: string
@@ -684,7 +684,7 @@ export declare namespace Zotero {
       itemType: 'RadioBroadcast'
       key: string
       title: string
-      creators: { creatorType: 'director' | 'castMember' | 'contributor' | 'guest' | 'producer' | 'scriptwriter', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'director' | 'castMember' | 'contributor' | 'guest' | 'producer' | 'scriptwriter', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       programTitle: string
       episodeNumber: string
@@ -711,7 +711,7 @@ export declare namespace Zotero {
       itemType: 'Report'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'seriesEditor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       reportNumber: string
       reportType: string
@@ -738,7 +738,7 @@ export declare namespace Zotero {
       itemType: 'Statute'
       key: string
       nameOfAct: string
-      creators: { creatorType: 'author' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       code: string
       codeNumber: string
@@ -762,7 +762,7 @@ export declare namespace Zotero {
       itemType: 'TvBroadcast'
       key: string
       title: string
-      creators: { creatorType: 'director' | 'castMember' | 'contributor' | 'guest' | 'producer' | 'scriptwriter', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'director' | 'castMember' | 'contributor' | 'guest' | 'producer' | 'scriptwriter', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       programTitle: string
       episodeNumber: string
@@ -789,7 +789,7 @@ export declare namespace Zotero {
       itemType: 'Thesis'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       thesisType: string
       university: string
@@ -814,7 +814,7 @@ export declare namespace Zotero {
       itemType: 'VideoRecording'
       key: string
       title: string
-      creators: { creatorType: 'director' | 'castMember' | 'contributor' | 'producer' | 'scriptwriter', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'director' | 'castMember' | 'contributor' | 'producer' | 'scriptwriter', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       videoRecordingFormat: string
       seriesTitle: string
@@ -843,7 +843,7 @@ export declare namespace Zotero {
       itemType: 'Webpage'
       key: string
       title: string
-      creators: { creatorType: 'author' | 'contributor' | 'translator', name?: string, firstName?: string, kastName?: string }[]
+      creators: { creatorType: 'author' | 'contributor' | 'translator', name?: string, firstName?: string, lastName?: string }[]
       abstractNote: string
       websiteTitle: string
       websiteType: string
