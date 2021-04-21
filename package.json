@@ -1,6 +1,6 @@
 {
   "name": "@retorquere/zotero-sync",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "One-way sync of Zotero libraries",
   "scripts": {
     "tsc": "tsc -d",
