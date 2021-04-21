@@ -10,6 +10,7 @@ export declare class Sync {
     static event: {
         library: string;
         collection: string;
+        remove: string;
         item: string;
         error: string;
     };
