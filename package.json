@@ -28,6 +28,7 @@
     "LICENSE",
     "README.md",
     "index.js",
+    "index.ts",
     "json-store.js",
     "package.json",
     "pnpm-lock.yaml",
