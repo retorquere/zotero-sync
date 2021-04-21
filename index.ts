@@ -17,6 +17,7 @@ export class Sync {
   static event = {
     library: 'zotero-sync.save-library',
     collection: 'zotero-sync.save-collection',
+    remove: 'zotero-sync.remove-objects',
     item: 'zotero-sync.save-item',
     error: 'zotero-sync.error',
   }
@@ -118,8 +119,14 @@ export class Sync {
     let deleted = await this.get(prefix, `/deleted?since=${stored.version}`)
     if (stored.version === remote.version) return
 
-    if (deleted.items.length) await stored.remove(deleted.items)
-    if (deleted.collections.length) await stored.remove_collections(deleted.collections)
+    if (deleted.items.length) {
+      this.emitter.emit(Sync.event.remove, "items", deleted.items.length)
+      await stored.remove(deleted.items)
+    }
+    if (deleted.collections.length) {
+      this.emitter.emit(Sync.event.remove, "collections", deleted.collections.length)
+      await stored.remove_collections(deleted.collections)
+    }
 
     const items = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=1`))
     for (let n = 0; n < items.length; n++) {
