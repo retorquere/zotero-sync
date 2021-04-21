@@ -107,7 +107,7 @@ export class Sync {
     }
 
     // update all libraries
-    for (const [n, [prefix, library]] of enumerate(this.libraries)) {
+    for (const [n, [prefix, library]] of enumerate(Object.entries(this.libraries))) {
       this.emitter.emit(Sync.event.library, library, n + 1, libraries.length)
 
       try {
