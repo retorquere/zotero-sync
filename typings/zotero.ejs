@@ -38,6 +38,7 @@ export declare namespace Zotero {
   interface Library {
     version: number
     name: string
+    type: string
     save: (name: string, version: number) => Promise<void>
     remove_collections: (keys: string[]) => Promise<void>
     add_collection: (collection: Collection) => Promise<void>
