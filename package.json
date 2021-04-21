@@ -4,8 +4,9 @@
   "description": "One-way sync of Zotero libraries",
   "scripts": {
     "tsc": "tsc -d",
-    "prepublishOnly": "pnpm install && npm run tsc",
-    "go": "npm run tsc && npm version patch && npm publish --access public",
+    "docs": "typedoc",
+    "prepublishOnly": "pnpm install && npm run tsc && npm run docs",
+    "go": "npm run tsc && npm run docs && npm version patch && npm publish --access public",
     "ncu": "ncu -u && pnpm i && git add package.json pnpm-lock.yaml && git commit -m ncu",
     "postversion": "git push --follow-tags"
   },
@@ -18,6 +19,7 @@
     "ejs": "^3.1.6",
     "eslint": "^7.24.0",
     "ts-node": "^9.1.1",
+    "typedoc": "^0.20.35",
     "typescript": "^4.2.4"
   },
   "dependencies": {
