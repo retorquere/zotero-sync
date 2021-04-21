@@ -7,11 +7,18 @@ function enumerate(array) {
   return array.map((v, i) => [i, v])
 }
 
-type RemoteLibrary = {
+type UserLibrary = {
+  type: 'user',
   prefix: string
-  name?: string
   version?: number
 }
+type GroupLibrary = {
+  type: 'group',
+  prefix: string
+  name: string
+  version?: number
+}
+type RemoteLibrary = GroupLibrary | UserLibrary
 
 export class Sync {
   static event = {
@@ -47,6 +54,7 @@ export class Sync {
     if (account.access?.user?.library) {
       const prefix = `/users/${account.userID}`
       this.libraries[prefix] = {
+        type: 'user',
         prefix,
       }
     }
@@ -54,6 +62,7 @@ export class Sync {
     for (const library of await this.json(`https://api.zotero.org/users/${account.userID}/groups`)) {
       const prefix = `/groups/${library.id}`
       this.libraries[prefix] = {
+        type: 'group',
         prefix,
         name: library.data.name,
       }
@@ -98,8 +107,9 @@ export class Sync {
     }
 
     // update all libraries
-    for (const [n, prefix] of enumerate(libraries)) {
-      this.emitter.emit(Sync.event.library, this.libraries[prefix].name, n + 1, libraries.length)
+    for (const [n, [prefix, library]] of enumerate(this.libraries)) {
+      const name = library.type === 'group' ? library.name : undefined
+      this.emitter.emit(Sync.event.library, name, n + 1, libraries.length)
 
       try {
         await this.update(store, prefix)
@@ -113,7 +123,7 @@ export class Sync {
     const stored: Zotero.Library = await store.get(prefix)
     const remote = this.libraries[prefix]
 
-    stored.name = stored.name || remote.name
+    if (remote.type === 'group') stored.name = remote.name
 
     // first fetch also gets the remote version
     let deleted = await this.get(prefix, `/deleted?since=${stored.version}`)
@@ -146,6 +156,7 @@ export class Sync {
       }
     }
 
-    await stored.save(remote.name, remote.version)
+    const name = remote.type === 'group' ? remote.name : undefined
+    await stored.save(name, remote.version)
   }
 }
