@@ -122,8 +122,6 @@ export class Sync {
     const stored: Zotero.Library = await store.get(prefix)
     const remote = this.libraries[prefix]
 
-    if (remote.type === 'group') stored.name = remote.name
-
     // first fetch also gets the remote version
     let deleted = await this.get(prefix, `/deleted?since=${stored.version}`)
     if (stored.version === remote.version) return
