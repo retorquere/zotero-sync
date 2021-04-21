@@ -1,4 +1,10 @@
 {
   "entryPoints": ["index.ts", "json-store.ts"],
-  "out": "docs"
+  "out": "docs",
+  "exclude": "+(gen-tests.ts|__tests__|node_modules|mini|build)",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "gitRevision": "master"
 }
