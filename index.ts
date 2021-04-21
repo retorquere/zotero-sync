@@ -47,6 +47,7 @@ export class Sync {
       const prefix = `/users/${account.userID}`
       this.libraries[prefix] = {
         prefix,
+        name: `User library`
       }
     }
 
