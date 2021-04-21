@@ -3,7 +3,7 @@
   "version": "1.0.11",
   "description": "One-way sync of Zotero libraries",
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc -d",
     "prepublishOnly": "pnpm install && npm run tsc",
     "go": "npm run tsc && npm version patch && npm publish --access public",
     "ncu": "ncu -u && pnpm i && git add package.json pnpm-lock.yaml && git commit -m ncu",
@@ -32,6 +32,8 @@
     "package.json",
     "pnpm-lock.yaml",
     "tsconfig.json",
-    "typings/zotero.d.ts"
+    "typings/zotero.d.ts",
+    "index.d.ts",
+    "json-store.d.ts"
   ]
 }
