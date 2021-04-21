@@ -608,6 +608,7 @@ export declare namespace Zotero {
     interface Note {
       itemType: 'Note'
       key: string
+      note: string
       tags: string[]
       collections: string[]
       relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
