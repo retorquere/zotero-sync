@@ -108,8 +108,7 @@ export class Sync {
 
     // update all libraries
     for (const [n, [prefix, library]] of enumerate(this.libraries)) {
-      const name = library.type === 'group' ? library.name : undefined
-      this.emitter.emit(Sync.event.library, name, n + 1, libraries.length)
+      this.emitter.emit(Sync.event.library, library, n + 1, libraries.length)
 
       try {
         await this.update(store, prefix)
