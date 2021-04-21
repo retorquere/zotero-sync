@@ -7,18 +7,12 @@ function enumerate(array) {
   return array.map((v, i) => [i, v])
 }
 
-type UserLibrary = {
-  type: 'user',
-  prefix: string
-  version?: number
-}
-type GroupLibrary = {
-  type: 'group',
+type RemoteLibrary = {
+  type: 'group' | 'user',
   prefix: string
   name: string
   version?: number
 }
-type RemoteLibrary = GroupLibrary | UserLibrary
 
 export class Sync {
   static event = {
@@ -56,6 +50,7 @@ export class Sync {
       this.libraries[prefix] = {
         type: 'user',
         prefix,
+        name: '',
       }
     }
 
