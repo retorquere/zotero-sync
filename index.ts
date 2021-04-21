@@ -129,11 +129,11 @@ export class Sync {
     if (stored.version === remote.version) return
 
     if (deleted.items.length) {
-      this.emitter.emit(Sync.event.remove, "items", deleted.items.length)
+      this.emitter.emit(Sync.event.remove, 'items', deleted.items)
       await stored.remove(deleted.items)
     }
     if (deleted.collections.length) {
-      this.emitter.emit(Sync.event.remove, "collections", deleted.collections.length)
+      this.emitter.emit(Sync.event.remove, 'collections', deleted.collections)
       await stored.remove_collections(deleted.collections)
     }
 
@@ -142,7 +142,7 @@ export class Sync {
       for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, this.batch).join(',')}&includeTrashed=1`)) {
         await stored.add(item.data)
         n += 1
-        this.emitter.emit(Sync.event.item, n, items.length)
+        this.emitter.emit(Sync.event.item, item.data, n, items.length)
       }
     }
 
@@ -151,7 +151,7 @@ export class Sync {
       for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, this.batch).join(',')}`)) {
         await stored.add_collection(collection.data)
         n += 1
-        this.emitter.emit(Sync.event.collection, collection.data.name, n, collections.length)
+        this.emitter.emit(Sync.event.collection, collection.data, n, collections.length)
       }
     }
 
