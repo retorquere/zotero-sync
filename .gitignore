@@ -1,3 +1,4 @@
+*.d.ts
 .env
 *.js
 *.sh
