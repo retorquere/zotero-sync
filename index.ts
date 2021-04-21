@@ -155,7 +155,6 @@ export class Sync {
       }
     }
 
-    const name = remote.type === 'group' ? remote.name : undefined
-    await stored.save(name, remote.version)
+    await stored.save(remote.type === 'group' ? remote.name : undefined, remote.version)
   }
 }
