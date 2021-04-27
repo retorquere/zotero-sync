@@ -134,7 +134,7 @@ export class Sync {
 
     const items = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=1`))
     for (let n = 0; n < items.length; n++) {
-      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, this.batch).join(',')}&includeTrashed=1`)) {
+      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, n+this.batch).join(',')}&includeTrashed=1`)) {
         await stored.add(item.data)
         n += 1
         this.emitter.emit(Sync.event.item, item.data, n, items.length)
@@ -143,7 +143,7 @@ export class Sync {
 
     const collections = Object.keys(await this.get(prefix, `/collections?since=${stored.version}&format=versions`))
     for (let n = 0; n < collections.length; n++) {
-      for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, this.batch).join(',')}`)) {
+      for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, n+this.batch).join(',')}`)) {
         await stored.add_collection(collection.data)
         n += 1
         this.emitter.emit(Sync.event.collection, collection.data, n, collections.length)
