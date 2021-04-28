@@ -134,7 +134,7 @@ export class Sync {
 
     const items = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=${Number(includeTrashed)}`))
     for (let n = 0; n < items.length; n++) {
-      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, this.batch).join(',')}&includeTrashed=${Number(includeTrashed)}`)) {
+      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, n+this.batch).join(',')}&includeTrashed=${Number(includeTrashed)}`)) {
         await stored.add(item.data)
         n += 1
         this.emitter.emit(Sync.event.item, item.data, n, items.length)
