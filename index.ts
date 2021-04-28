@@ -96,7 +96,7 @@ export class Sync {
     return await res.json()
   }
 
-  public async sync(store: Zotero.Store) {
+  public async sync(store: Zotero.Store, includeTrashed:boolean=true) {
     // remove libraries we no longer have access to
     const libraries = Object.keys(this.libraries)
     for (const user_or_group_prefix of store.libraries) {
@@ -108,14 +108,14 @@ export class Sync {
       this.emitter.emit(Sync.event.library, library, n + 1, libraries.length)
 
       try {
-        await this.update(store, prefix)
+        await this.update(store, prefix, includeTrashed)
       } catch(err) {
         this.emitter.emit(Sync.event.error, err)
       }
     }
   }
 
-  private async update(store: Zotero.Store, prefix: string) {
+  private async update(store: Zotero.Store, prefix: string, includeTrashed: boolean) {
     const stored: Zotero.Library = await store.get(prefix)
     const remote = this.libraries[prefix]
 
@@ -132,9 +132,9 @@ export class Sync {
       await stored.remove_collections(deleted.collections)
     }
 
-    const items = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=1`))
+    const items = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=${Number(includeTrashed)}`))
     for (let n = 0; n < items.length; n++) {
-      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, n+this.batch).join(',')}&includeTrashed=1`)) {
+      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, n+this.batch).join(',')}&includeTrashed=${Number(includeTrashed)}`)) {
         await stored.add(item.data)
         n += 1
         this.emitter.emit(Sync.event.item, item.data, n, items.length)
