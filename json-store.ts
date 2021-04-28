@@ -55,11 +55,11 @@ export class Library implements Zotero.Library {
 
 export class Store implements Zotero.Store {
   public libraries: string[]
-  private path: string
+  private dir: string
 
   public async load(dir: string): Promise<Store> {
     this.dir = dir
-    this.libraries = (await fs.promises.readdir(path)).filter(name => name.startsWith('%') && name.endsWith('.json')).map(name => decodeURIComponent(name.replace(/\.json$/, '')))
+    this.libraries = (await fs.promises.readdir(dir)).filter(name => name.startsWith('%') && name.endsWith('.json')).map(name => decodeURIComponent(name.replace(/\.json$/, '')))
     return this
   }
 

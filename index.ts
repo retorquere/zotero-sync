@@ -3,7 +3,7 @@ import * as events from 'events'
 
 import type { Zotero } from './typings/zotero'
 
-function enumerate(array: T[]): [number, T][] {
+function enumerate<T>(array: T[]): [number, T][] {
   return array.map((v: T, i: number) => [i, v])
 }
 
