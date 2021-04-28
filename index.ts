@@ -96,7 +96,7 @@ export class Sync {
     return await res.json()
   }
 
-  public async sync(store: Zotero.Store, includeTrashed:boolean=false) {
+  public async sync(store: Zotero.Store, includeTrashed:boolean=true) {
     // remove libraries we no longer have access to
     const libraries = Object.keys(this.libraries)
     for (const user_or_group_prefix of store.libraries) {
@@ -143,7 +143,7 @@ export class Sync {
 
     const collections = Object.keys(await this.get(prefix, `/collections?since=${stored.version}&format=versions`))
     for (let n = 0; n < collections.length; n++) {
-      for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, this.batch).join(',')}`)) {
+      for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, n+this.batch).join(',')}`)) {
         await stored.add_collection(collection.data)
         n += 1
         this.emitter.emit(Sync.event.collection, collection.data, n, collections.length)
