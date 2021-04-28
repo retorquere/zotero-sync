@@ -3,12 +3,12 @@ import * as events from 'events'
 
 import type { Zotero } from './typings/zotero'
 
-function enumerate(array) {
-  return array.map((v, i) => [i, v])
+function enumerate(array: T[]): [number, T][] {
+  return array.map((v: T, i: number) => [i, v])
 }
 
 type RemoteLibrary = {
-  type: 'group' | 'user',
+  type: 'group' | 'user'
   prefix: string
   name: string
   version?: number
@@ -30,16 +30,16 @@ export class Sync {
   public libraries: Record<string, RemoteLibrary>
   public emitter: events.EventEmitter
 
-  constructor(batch = 50, emitter?: events.EventEmitter) {
-    this.batch = 50
+  constructor(batch = 50, emitter?: events.EventEmitter) { // eslint-disable-line no-magic-numbers
+    this.batch = batch
     this.emitter = emitter || new events.EventEmitter
   }
 
-  public on(event, handler: (...args: any[]) => void) {
+  public on(event: string, handler: (...args: any[]) => void): void {
     this.emitter.on(event, handler)
   }
 
-  public async login(api_key: string) {
+  public async login(api_key: string): Promise<void> {
     this.headers.Authorization = `Bearer ${api_key}`
     const account = await this.json('https://api.zotero.org/keys/current')
 
@@ -72,8 +72,8 @@ export class Sync {
     return await fetch(url, { headers: this.headers })
   }
 
-  private async json(url) {
-    return await (await this.fetch(url)).json()
+  private async json(url): Promise<any> {
+    return await (await this.fetch(url)).json() // eslint-disable-line @typescript-eslint/no-unsafe-return
   }
 
   public async get(prefix: string, uri: string): Promise<any> {
@@ -93,10 +93,10 @@ export class Sync {
       if (isNaN(library.version)) throw new Error(`${res.headers.get('last-modified-version')} is not a number`)
     }
 
-    return await res.json()
+    return await res.json() // eslint-disable-line @typescript-eslint/no-unsafe-return
   }
 
-  public async sync(store: Zotero.Store, includeTrashed:boolean=true) {
+  public async sync(store: Zotero.Store, includeTrashed=true): Promise<void> {
     // remove libraries we no longer have access to
     const libraries = Object.keys(this.libraries)
     for (const user_or_group_prefix of store.libraries) {
@@ -109,7 +109,8 @@ export class Sync {
 
       try {
         await this.update(store, prefix, includeTrashed)
-      } catch(err) {
+      }
+      catch(err) {
         this.emitter.emit(Sync.event.error, err)
       }
     }
@@ -120,7 +121,7 @@ export class Sync {
     const remote = this.libraries[prefix]
 
     // first fetch also gets the remote version
-    let deleted = await this.get(prefix, `/deleted?since=${stored.version}`)
+    const deleted = await this.get(prefix, `/deleted?since=${stored.version}`)
     if (stored.version === remote.version) return
 
     if (deleted.items.length) {
