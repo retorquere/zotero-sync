@@ -13,20 +13,15 @@ export class Library implements Zotero.Library {
 
   public async load(filename: string): Promise<Library> {
     this.filename = filename
-    let items: Zotero.Item.Any[] = []
-    let collections: Zotero.Collection[] = []
-    let version = 0
-    let name = ''
     try {
-      ({ items, collections, version, name } = JSON.parse(await fs.promises.readFile(this.filename, 'utf-8')))
+      Object.assign(this, JSON.parse(await fs.promises.readFile(this.filename, 'utf-8')))
     }
     catch (err) {
-      // pass
+      this.items = []
+      this.collections = []
+      this.version = 0
+      this.name = ''
     }
-    this.items = items
-    this.collections = collections
-    this.name = name
-    this.version = version
     return this
   }
 
