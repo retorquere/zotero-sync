@@ -15,24 +15,9 @@ export declare namespace Zotero {
   interface Collection {
     key: string;
     version: number;
-    library: {
-      type: string;
-      id: number;
-      name: string;
-      links: Record<'self' | 'alternate' | 'up', { href: string, type: string }>
-    }
-    links: Record<'self' | 'alternate' | 'up', { href: string, type: string }>
-    meta: {
-      numCollections: number;
-      numItems: number;
-    }
-    data: {
-      key: string;
-      version: number;
-      name: string;
-      parentCollection: false | string;
-      relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
-    }
+    name: string;
+    parentCollection: false | string;
+    relations: Record<'owl:sameAs' | 'dc:replaces' | 'dc:relation', string>
   }
 
   interface Library {
