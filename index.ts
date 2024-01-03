@@ -55,7 +55,7 @@ export class Sync {
     }
 
     for (const library of await this.json(`https://api.zotero.org/users/${account.userID}/groups`)) {
-      if (account.access.groups[library.id]) {
+      if (account.access.groups['all'] || account.access.groups[library.id]) {
         const prefix = `/groups/${library.id}`
         this.libraries[prefix] = {
           type: 'group',
