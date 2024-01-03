@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["index.ts", "json-store.ts"],
+  "entryPoints": ["index.ts", "json-store.ts", "typings/zotero.d.ts"],
   "out": "docs",
   "exclude": "+(gen-tests.ts|__tests__|node_modules|mini|build)",
   "excludePrivate": true,
