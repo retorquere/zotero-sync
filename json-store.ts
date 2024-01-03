@@ -54,7 +54,7 @@ export class Library implements Zotero.Library {
   public async save(name: string, version: number): Promise<void> {
     this.name = name
     this.version = version
-    await fs.promises.writeFile(this.filename, stringify({ items: this.items, collections: this.collections, name: this.name, version: this.version }))
+    await fs.promises.writeFile(this.filename, stringify({ items: this.items, collections: this.collections, name: this.name, version: this.version }) as string)
   }
 }
 

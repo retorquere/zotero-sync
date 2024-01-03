@@ -55,7 +55,7 @@ export class Sync {
     }
 
     for (const library of await this.json(`https://api.zotero.org/users/${account.userID}/groups`)) {
-      if (account.access.groups['all'] || account.access.groups[library.id]) {
+      if (account.access.groups.all || account.access.groups[library.id]) {
         const prefix = `/groups/${library.id}`
         this.libraries[prefix] = {
           type: 'group',
@@ -68,11 +68,11 @@ export class Sync {
     this.userID = account.userID
   }
 
-  private async fetch(url) {
+  private async fetch(url: string) {
     return await fetch(url, { headers: this.headers })
   }
 
-  private async json(url): Promise<any> {
+  private async json(url: string): Promise<any> {
     return await (await this.fetch(url)).json() // eslint-disable-line @typescript-eslint/no-unsafe-return
   }
 
@@ -121,7 +121,12 @@ export class Sync {
     const remote = this.libraries[prefix]
 
     // first fetch also gets the remote version
-    const deleted = await this.get(prefix, `/deleted?since=${stored.version}`)
+    const deleted: {
+      collections: string[]
+      searches: string[]
+      items: string[]
+      tags: string[]
+    } = await this.get(prefix, `/deleted?since=${stored.version}`)
     if (stored.version === remote.version) return
 
     if (deleted.items.length) {
@@ -133,19 +138,19 @@ export class Sync {
       await stored.remove_collections(deleted.collections)
     }
 
-    const items = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=${Number(includeTrashed)}`))
+    const items: string[] = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=${Number(includeTrashed)}`) as Record<string, number>)
     for (let n = 0; n < items.length; n++) {
       for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, n+this.batch).join(',')}&includeTrashed=${Number(includeTrashed)}`)) {
-        await stored.add(item.data)
+        await stored.add(item.data as Zotero.Item.Any)
         n += 1
         this.emitter.emit(Sync.event.item, item.data, n, items.length)
       }
     }
 
-    const collections = Object.keys(await this.get(prefix, `/collections?since=${stored.version}&format=versions`))
+    const collections: string[] = Object.keys(await this.get(prefix, `/collections?since=${stored.version}&format=versions`) as Record<string, number>)
     for (let n = 0; n < collections.length; n++) {
       for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, n+this.batch).join(',')}`)) {
-        await stored.add_collection(collection.data)
+        await stored.add_collection(collection.data as Zotero.Collection)
         n += 1
         this.emitter.emit(Sync.event.collection, collection.data, n, collections.length)
       }
