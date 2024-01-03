@@ -7,9 +7,9 @@
     "lint": "eslint . --ext .ts",
     "build": "npm run tsc && npm run lint",
     "docs": "typedoc",
-    "prepublishOnly": "pnpm install && npm run build && npm run docs",
+    "prepublishOnly": "npm install && npm run build && npm run docs",
     "go": "npm run build && npm run docs && npm version patch && npm publish --access public",
-    "ncu": "ncu -u && pnpm i && git add package.json pnpm-lock.yaml && git commit -m ncu",
+    "ncu": "ncu -u && npm i && git add package.json package-lock.json && git commit -m ncu",
     "postversion": "git push --follow-tags"
   },
   "main": "index.js",
