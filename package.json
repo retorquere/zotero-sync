@@ -4,7 +4,7 @@
   "description": "One-way sync of Zotero libraries",
   "scripts": {
     "tsc": "tsc -d",
-    "lint": "eslint . --ext .ts",
+    "lint": "dprint fmt *.ts && dprint check *.ts",
     "build": "npm run tsc && npm run lint",
     "docs": "typedoc",
     "prepublishOnly": "npm install && npm run build && npm run docs",
@@ -21,18 +21,13 @@
     "zotero-sync"
   ],
   "devDependencies": {
-    "@types/node": "^20.10.6",
-    "@types/node-fetch": "^2.6.10",
-    "@typescript-eslint/eslint-plugin": "^6.17.0",
-    "@typescript-eslint/parser": "^6.17.0",
-    "ejs": "^3.1.9",
-    "eslint": "^8.56.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsdoc": "^48.0.2",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "@types/node": "^22.12.0",
+    "@types/node-fetch": "^2.6.12",
+    "dprint": "^0.48.0",
+    "ejs": "^3.1.10",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.25.6",
-    "typescript": "^5.3.3"
+    "typedoc": "^0.27.6",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "json-stringify-pretty-compact": "^4.0.0",

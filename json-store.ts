@@ -82,7 +82,7 @@ export class Store implements Zotero.Store {
 
   // get existing library or create new
   public async get(user_or_group_prefix: string): Promise<Library> {
-    const library = new Library
+    const library = new Library()
     if (!this.libraries.includes(user_or_group_prefix)) this.libraries.push(user_or_group_prefix)
     return await library.load(path.join(this.dir, this.filename(user_or_group_prefix)))
   }

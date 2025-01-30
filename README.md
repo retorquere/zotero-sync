@@ -46,6 +46,25 @@ const Store = require('@retorquere/zotero-sync/json-store').Store
 });
 ```
 
+or (untested) local access
+
+```
+const Sync = require('@retorquere/zotero-sync').Sync
+const Store = require('@retorquere/zotero-sync/json-store').Store
+
+(async () => {
+  const zotero = new Sync;
+  for (const event of [Sync.event.library, Sync.event.collection, Sync.event.item, Sync.event.error]) {
+    zotero.on(event, (e => function () { console.log(e, [...arguments]); })(event));
+  }
+  zotero.local()
+  await zotero.sync(await (new Store).load('data'));
+})().catch(err => {
+    console.log(err);
+    process.exit(1);
+});
+```
+
 make your own store by implementing
 
 ```

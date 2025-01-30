@@ -1,5 +1,5 @@
-import fetch from 'node-fetch'
 import * as events from 'events'
+import fetch from 'node-fetch'
 
 import type { Zotero } from './typings/zotero'
 
@@ -8,7 +8,7 @@ function enumerate<T>(array: T[]): [number, T][] {
 }
 
 type RemoteLibrary = {
-  type: 'group' | 'user'
+  type: 'group' | 'user' | 'local'
   prefix: string
   name: string
   version?: number
@@ -23,27 +23,34 @@ export class Sync {
     error: 'zotero-sync.error',
   }
 
-  private headers = { 'Zotero-API-Version': '3', Authorization: '' }
+  private headers: Record<string, string> = { 'Zotero-API-Version': '3' }
   private batch: number
 
   public userID: number
-  public libraries: Record<string, RemoteLibrary>
+  public libraries: Record<string, RemoteLibrary> = {}
   public emitter: events.EventEmitter
 
   constructor(batch = 50, emitter?: events.EventEmitter) { // eslint-disable-line no-magic-numbers
     this.batch = batch
-    this.emitter = emitter || new events.EventEmitter
+    this.emitter = emitter || new events.EventEmitter()
   }
 
   public on(event: string, handler: (...args: any[]) => void): void {
     this.emitter.on(event, handler)
   }
 
+  public local(): void {
+    const prefix = '/api/users/0'
+    this.libraries[prefix] = {
+      type: 'local',
+      prefix,
+      name: '',
+    }
+  }
+
   public async login(api_key: string): Promise<void> {
     this.headers.Authorization = `Bearer ${api_key}`
     const account = await this.json('https://api.zotero.org/keys/current')
-
-    this.libraries = {}
 
     if (account.access?.user?.library) {
       const prefix = `/users/${account.userID}`
@@ -96,7 +103,7 @@ export class Sync {
     return await res.json() // eslint-disable-line @typescript-eslint/no-unsafe-return
   }
 
-  public async sync(store: Zotero.Store, includeTrashed=true): Promise<void> {
+  public async sync(store: Zotero.Store, includeTrashed = true): Promise<void> {
     // remove libraries we no longer have access to
     const libraries = Object.keys(this.libraries)
     for (const user_or_group_prefix of store.libraries) {
@@ -110,7 +117,7 @@ export class Sync {
       try {
         await this.update(store, prefix, includeTrashed)
       }
-      catch(err) {
+      catch (err) {
         this.emitter.emit(Sync.event.error, err)
       }
     }
@@ -140,7 +147,7 @@ export class Sync {
 
     const items: string[] = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=${Number(includeTrashed)}`) as Record<string, number>)
     for (let n = 0; n < items.length; n++) {
-      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, n+this.batch).join(',')}&includeTrashed=${Number(includeTrashed)}`)) {
+      for (const item of await this.get(prefix, `/items?itemKey=${items.slice(n, n + this.batch).join(',')}&includeTrashed=${Number(includeTrashed)}`)) {
         await stored.add(item.data as Zotero.Item.Any)
         n += 1
         this.emitter.emit(Sync.event.item, item.data, n, items.length)
@@ -149,7 +156,7 @@ export class Sync {
 
     const collections: string[] = Object.keys(await this.get(prefix, `/collections?since=${stored.version}&format=versions`) as Record<string, number>)
     for (let n = 0; n < collections.length; n++) {
-      for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, n+this.batch).join(',')}`)) {
+      for (const collection of await this.get(prefix, `/collections?collectionKey=${collections.slice(n, n + this.batch).join(',')}`)) {
         await stored.add_collection(collection.data as Zotero.Collection)
         n += 1
         this.emitter.emit(Sync.event.collection, collection.data, n, collections.length)
