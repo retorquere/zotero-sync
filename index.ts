@@ -23,7 +23,7 @@ export class Sync {
     error: 'zotero-sync.error',
   }
 
-  private headers: Record<string, string> = { 'Zotero-API-Version': '3' }
+  protected headers: Record<string, string> = { 'Zotero-API-Version': '3' }
   private batch: number
 
   public userID: number
@@ -46,6 +46,7 @@ export class Sync {
       prefix,
       name: '',
     }
+    this.userID = 0
   }
 
   public async login(api_key: string): Promise<void> {
@@ -75,7 +76,7 @@ export class Sync {
     this.userID = account.userID
   }
 
-  private async fetch(url: string) {
+  protected async fetch(url: string) {
     return await fetch(url, { headers: this.headers })
   }
 
@@ -86,7 +87,9 @@ export class Sync {
   public async get(prefix: string, uri: string): Promise<any> {
     const library = this.libraries[prefix]
     if (!library) throw new Error(`${this.userID} does not have access to ${prefix}`)
-    uri = `https://api.zotero.org${prefix}${uri}`
+
+    const baseUrl = (library.type === 'local') ? 'http://localhost:23119' : 'https://api.zotero.org'
+    uri = `${baseUrl}${prefix}${uri}`
 
     const res = await this.fetch(uri)
 
@@ -127,22 +130,24 @@ export class Sync {
     const stored: Zotero.Library = await store.get(prefix)
     const remote = this.libraries[prefix]
 
-    // first fetch also gets the remote version
-    const deleted: {
-      collections: string[]
-      searches: string[]
-      items: string[]
-      tags: string[]
-    } = await this.get(prefix, `/deleted?since=${stored.version}`)
-    if (stored.version === remote.version) return
+    if (remote.type !== 'local') { // local does not yet support deleted
+      // first fetch also gets the remote version
+      const deleted: {
+        collections: string[]
+        searches: string[]
+        items: string[]
+        tags: string[]
+      } = await this.get(prefix, `/deleted?since=${stored.version}`)
+      if (stored.version === remote.version) return
 
-    if (deleted.items.length) {
-      this.emitter.emit(Sync.event.remove, 'items', deleted.items)
-      await stored.remove(deleted.items)
-    }
-    if (deleted.collections.length) {
-      this.emitter.emit(Sync.event.remove, 'collections', deleted.collections)
-      await stored.remove_collections(deleted.collections)
+      if (deleted.items.length) {
+        this.emitter.emit(Sync.event.remove, 'items', deleted.items)
+        await stored.remove(deleted.items)
+      }
+      if (deleted.collections.length) {
+        this.emitter.emit(Sync.event.remove, 'collections', deleted.collections)
+        await stored.remove_collections(deleted.collections)
+      }
     }
 
     const items: string[] = Object.keys(await this.get(prefix, `/items?since=${stored.version}&format=versions&includeTrashed=${Number(includeTrashed)}`) as Record<string, number>)
